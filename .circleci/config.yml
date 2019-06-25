@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+
+    steps:
+      - checkout
+
+      - run:
+          name: Build
+          command: dotnet build -c Release -p:Version=1.0.{CIRCLE_BUILD_NUM}
+
+      - run:
+          name: Unit tests
+          command: dotnet test -c Release -p:Version=1.0.{CIRCLE_BUILD_NUM}
