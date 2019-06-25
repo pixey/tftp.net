@@ -22,7 +22,7 @@ jobs:
     steps:
       - run:
           name: Publish Nuget package
-          command: dotnet nuget push Tftp.Net/bin/Release/Tftp.Net.1.0.${CIRCLE_BUILD_NUM}.nupkg --api-key ${NUGET_API_KEY}
+          command: dotnet nuget push Tftp.Net/bin/Release/Tftp.Net.1.0.${CIRCLE_BUILD_NUM}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
 
 workflows:
   version: 2
