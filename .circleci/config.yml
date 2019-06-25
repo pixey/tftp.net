@@ -12,12 +12,8 @@ jobs:
           command: dotnet build -c Release -p:Version=1.0.${CIRCLE_BUILD_NUM}
 
       - run:
-          name: test
-          command: find . -print
-
-      # - run:
-      #     name: Unit tests
-      #     command: dotnet test -c Release --no-build -p:Version=1.0.${CIRCLE_BUILD_NUM}
+          name: Unit tests
+          command: dotnet test -c Release --no-build -p:Version=1.0.${CIRCLE_BUILD_NUM}
 
       - persist_to_workspace:
           root: Tftp.Net/bin/Release
@@ -33,10 +29,6 @@ jobs:
           at: Tftp.Net/bin/Release
 
       - run:
-          name: test
-          command: find . -print
-
-      - run:
           name: Publish Nuget package
           command: dotnet nuget push Tftp.Net/bin/Release/*.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
 
@@ -46,5 +38,8 @@ workflows:
     jobs:
       - build
       - deploy:
+          filters:
+            branches:
+              only: master
           requires:
             - build
