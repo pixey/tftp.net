@@ -11,6 +11,10 @@ jobs:
           name: Build
           command: dotnet build -c Release -p:Version=1.0.${CIRCLE_BUILD_NUM}
 
+      - run:
+          name: test
+          command: ls -lr
+
       # - run:
       #     name: Unit tests
       #     command: dotnet test -c Release --no-build -p:Version=1.0.${CIRCLE_BUILD_NUM}
