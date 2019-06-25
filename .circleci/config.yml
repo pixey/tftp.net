@@ -11,14 +11,14 @@ jobs:
           name: Build
           command: dotnet build -c Release -p:Version=1.0.${CIRCLE_BUILD_NUM}
 
-      - run:
-          name: Unit tests
-          command: dotnet test -c Release --no-build -p:Version=1.0.${CIRCLE_BUILD_NUM}
+      # - run:
+      #     name: Unit tests
+      #     command: dotnet test -c Release --no-build -p:Version=1.0.${CIRCLE_BUILD_NUM}
 
       - persist_to_workspace:
-          root: /bin
+          root: Tftp.Net/bin/Release
           paths:
-            - Tftp.Net/bin/Release
+            - Tftp.Net.1.0.${CIRCLE_BUILD_NUM}.nupkg
   
   deploy:
     docker:
@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: /bin
+          at: Tftp.Net/bin/Release
 
       - run:
           name: test
@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: Publish Nuget package
-          command: dotnet nuget push /bin/Tftp.Net.1.0.${CIRCLE_BUILD_NUM}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
+          command: dotnet nuget push Tftp.Net/bin/Release/Tftp.Net.1.0.${CIRCLE_BUILD_NUM}.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
 
 workflows:
   version: 2
