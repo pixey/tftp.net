@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: test
-          command: ls -lr
+          command: find . -print
 
       # - run:
       #     name: Unit tests
@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: test
-          command: ls -lr
+          command: find . -print
 
       - run:
           name: Publish Nuget package
