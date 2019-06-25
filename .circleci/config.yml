@@ -22,7 +22,7 @@ jobs:
       - persist_to_workspace:
           root: Tftp.Net/bin/Release
           paths:
-            - Tftp.Net.Core.1.0.${CIRCLE_BUILD_NUM}.nupkg
+            - "*.nupkg"
   
   deploy:
     docker:
