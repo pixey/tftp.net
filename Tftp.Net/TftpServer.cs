@@ -15,7 +15,7 @@ namespace Tftp.Net
     /// <summary>
     /// A simple TFTP server class. <code>Dispose()</code> the server to close the socket that it listens on.
     /// </summary>
-    public class TftpServer : IDisposable
+    public class TftpServer : IDisposable, ITftpServer
     {
         public const int DEFAULT_SERVER_PORT = 69;
 
