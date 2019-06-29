@@ -13,7 +13,7 @@ namespace Tftp.Net
     /// <summary>
     /// A TFTP client that can connect to a TFTP server.
     /// </summary>
-    public class TftpClient
+    public class TftpClient : ITftpClient
     {
         private const int DEFAULT_SERVER_PORT = 69;
         private readonly IPEndPoint remoteAddress;
